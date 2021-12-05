@@ -134,6 +134,14 @@ class HashTableSepChain:
 
         self.COLLISIONS_DETECTED = 0
 
+    def copy(self):
+        new_ht = HashTableSepChain(size=self.__size__)
+        for elem_list in self.__data__:
+            if elem_list:
+                for elem in elem_list:
+                    new_ht.insert(elem[0], elem[1])
+        return new_ht
+
 
 if __name__ == "__main__":
     hs = HashTableSepChain(size=5)

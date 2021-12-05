@@ -119,6 +119,13 @@ class HashTableDoubleHashing:
                 i += 1
         return None
 
+    def copy(self):
+        new_ht = HashTableDoubleHashing(size=self.__size__)
+        for elem in self.__data__:
+            if elem:
+                new_ht.insert(elem[0], elem[1])
+        return new_ht
+
     def get_table_info(self):
         deleted_elements_count = sum(1 if not i and i is not None else 0 for i in self.__data__)
         text = f"---------Double hashing Table info------------\n" \
