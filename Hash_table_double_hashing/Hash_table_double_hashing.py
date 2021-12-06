@@ -30,6 +30,7 @@ class HashTableDoubleHashing:
         elif not self.__data__[hash_key1]:
             self.__data__[hash_key1] = (key, value)
             self.__number_of_elements__ += 1
+            self.COLLISIONS_DETECTED += 1
         # if keys is equal - change value
         elif self.__data__[hash_key1][0] == key:
             self.__data__[hash_key1] = (key, value)
@@ -44,13 +45,16 @@ class HashTableDoubleHashing:
                 if not self.__data__[new_ind]:
                     self.__data__[new_ind] = (key, value)
                     self.__number_of_elements__ += 1
-                    self.COLLISIONS_DETECTED += 1
+                    if self.__data__[new_ind] is not None:
+                        self.COLLISIONS_DETECTED += 1
                     break
                 # if keys is equal to current key
                 elif self.__data__[new_ind][0] == key:
                     self.__data__[new_ind] = (key, value)
                     break
                 i += 1
+            else:
+                raise ValueError('Cant insert into table!')
 
     def hash_from_list_of_pairs(self, list_of_pairs):
         for pair in list_of_pairs:
@@ -92,9 +96,12 @@ class HashTableDoubleHashing:
             i = 1
             while i < self.__size__:
                 new_ind = (hash_key1 + i * hash_key2) % self.__size__
-                # if cell is empty
+                # if cell is not empty
+                if self.__data__[new_ind] is None:
+                    return None
                 if self.__data__[new_ind] and self.__data__[new_ind][0] == key:
                     return self.__data__[new_ind][1]
+
                 i += 1
         return None
 
@@ -111,10 +118,12 @@ class HashTableDoubleHashing:
             i = 1
             while i < self.__size__:
                 new_ind = (hash_key1 + i * hash_key2) % self.__size__
+                if self.__data__[new_ind] is None:
+                    return None
                 # if cell is empty
-                if self.__data__[new_ind] and self.__data__[new_ind][0] == key:
-                    ret_value = self.__data__[hash_key1][1]
-                    self.__data__[hash_key1] = tuple()
+                if self.__data__[new_ind]  and self.__data__[new_ind][0] == key:
+                    ret_value = self.__data__[new_ind][1]
+                    self.__data__[new_ind] = tuple()
                     return ret_value
                 i += 1
         return None
@@ -136,6 +145,16 @@ class HashTableDoubleHashing:
                f"Deleted elements: {deleted_elements_count}\n" \
                f"----------------------------------------------\n"
         return text
+
+    def clear(self):
+        self.__data__ = [None for _ in range(self.__size__)]
+        self.__size__ = 8
+        self.__hash_function1__.change_table_size(8)
+        self.__hash_function2__.change_table_size(8)
+
+        self.__number_of_elements__ = 0
+
+        self.COLLISIONS_DETECTED = 0
 
 
 if __name__ == "__main__":
