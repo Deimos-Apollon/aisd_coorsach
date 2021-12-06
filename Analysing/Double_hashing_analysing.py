@@ -1,9 +1,4 @@
-import time
-from collections import Counter
-
-import matplotlib.pyplot as plt
-
-from Analysing.Sep_chaining_figures.AnalyseFunctions import analyse_insert_without_resize,\
+from Analysing.AnalyseFunctions import analyse_insert_without_resize,\
     analyse_insert_with_resize, analyse_find, analyse_pop
 from Hash_table_double_hashing.Hash_table_double_hashing import HashTableDoubleHashing
 from random import randint
@@ -24,7 +19,7 @@ if __name__ == "__main__":
     print(f"Checking insertion ht info", ht.get_table_info())
     # analyse find
     table_size_range = [8, 16, 32, 64, 128, 256, 512, 1024, 2048,
-                        4096, 8192, 16384, 32768, 65536]
+                        4096, 8192, 16384, 32768, 65536, 131072]
     ht_to_arr_dict = {HashTableDoubleHashing(j): [randint(0, i) for i in range(2*j)] for j in table_size_range}
     for index, ht_elem in enumerate(ht_to_arr_dict.keys()):
         ht_elem.hash_from_list_of_pairs((randint(0, 2*table_size_range[index]), i)

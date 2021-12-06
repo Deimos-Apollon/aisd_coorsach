@@ -30,11 +30,7 @@ def analyse_insert_with_resize(ht, arr, prefix):
     if not was_last_division:
         all_times_for_table_size[ht.__size__] /= times_number_for_table_size[ht.__size__]
 
-
-
-
-    ax = plt.figure().add_subplot()
-    ax.set(ylim=(10 ** (-6), 10 ** (-5)))
+    plt.figure()
     plt.title("График зависимости лучшего времени для вставки элемента\n"
               " от размера таблицы c учётом resize")
     plt.xlabel("Размер таблицы")
@@ -43,8 +39,7 @@ def analyse_insert_with_resize(ht, arr, prefix):
     plt.plot(best_times.keys(), best_times.values(), '--o')
     plt.savefig(f"{prefix}/insertion/best_times_with_resize.png", bbox_inches="tight")
 
-    ax = plt.figure().add_subplot()
-    ax.set(ylim=(10 ** (-6), 10 ** (-5)))
+    plt.figure()
     plt.title("График зависимости среднего времени для вставки элемента\n"
               " от размера таблицы с учётом resize (без учёта вставки в нулевую таблицу)")
     plt.xlabel("Размер таблицы")
@@ -52,8 +47,7 @@ def analyse_insert_with_resize(ht, arr, prefix):
     plt.plot(list(all_times_for_table_size.keys())[1:], list(all_times_for_table_size.values())[1:], '--o')
     plt.savefig(f"{prefix}/insertion/mean_times_with_resize.png", bbox_inches="tight")
 
-    ax = plt.figure().add_subplot()
-    ax.set(ylim=(10 ** (-6), 10 ** (-4)))
+    plt.figure()
     plt.title("График зависимости худшего времени для вставки элемента\n"
               " от размера таблицы с учётом resize")
     plt.xlabel("Размер таблицы")
@@ -89,8 +83,7 @@ def analyse_insert_without_resize(ht, arr, prefix):
     if not was_last_division:
         all_times_for_table_size[ht.__size__] /= times_number_for_table_size[ht.__size__]
 
-    ax = plt.figure().add_subplot()
-    ax.set(ylim=(10 ** (-6), 10 ** (-5)))
+    plt.figure()
     plt.title("График зависимости лучшего времени для вставки элемента\n"
               " от размера таблицы без учёта resize")
     plt.xlabel("Размер таблицы")
@@ -99,8 +92,7 @@ def analyse_insert_without_resize(ht, arr, prefix):
     plt.plot(best_times.keys(), best_times.values(), '--o')
     plt.savefig(f"{prefix}/insertion/best_times_without_resize.png", bbox_inches="tight")
 
-    ax = plt.figure().add_subplot()
-    ax.set(ylim=(10 ** (-6), 10 ** (-5)))
+    plt.figure()
     plt.title("График зависимости среднего времени для вставки элемента\n"
               " от размера таблицы без учёта resize")
     plt.xlabel("Размер таблицы")
@@ -108,8 +100,7 @@ def analyse_insert_without_resize(ht, arr, prefix):
     plt.plot(all_times_for_table_size.keys(), all_times_for_table_size.values(), '--o')
     plt.savefig(f"{prefix}/insertion/mean_times_without_resize.png", bbox_inches="tight")
 
-    ax = plt.figure().add_subplot()
-    ax.set(ylim=(10 ** (-6), 10 ** (-4)))
+    plt.figure()
     plt.title("График зависимости худшего времени для вставки элемента\n"
               " от размера таблицы без учёта resize")
     plt.xlabel("Размер таблицы")
@@ -140,8 +131,7 @@ def analyse_find(ht_to_arr_dict: {}, prefix):
                 worst_times[table_size] = total_time
         all_times_for_table_size[table_size] /= times_number_for_table_size[table_size]
 
-    ax = plt.figure().add_subplot()
-    ax.set(ylim=(10 ** (-6), 10 ** (-5)))
+    plt.figure()
     plt.title("График зависимости лучшего времени для поиска элемента\n"
               " от размера таблицы")
     plt.xlabel("Размер таблицы")
@@ -150,8 +140,7 @@ def analyse_find(ht_to_arr_dict: {}, prefix):
     plt.plot(best_times.keys(), best_times.values(), '--o')
     plt.savefig(f"{prefix}/find/best_times.png", bbox_inches="tight")
 
-    ax = plt.figure().add_subplot()
-    ax.set(ylim=(10 ** (-6), 10 ** (-5)))
+    plt.figure()
     plt.title("График зависимости среднего времени для поиска элемента\n"
               " от размера таблицы")
     plt.xlabel("Размер таблицы")
@@ -159,8 +148,7 @@ def analyse_find(ht_to_arr_dict: {}, prefix):
     plt.plot(all_times_for_table_size.keys(), all_times_for_table_size.values(), '--o')
     plt.savefig(f"{prefix}/find/mean_times.png", bbox_inches="tight")
 
-    ax = plt.figure().add_subplot()
-    ax.set(ylim=(10**(-6), 10**(-4)))
+    plt.figure()
     plt.title("График зависимости худшего времени для поиска элемента\n"
               " от размера таблицы")
     plt.xlabel("Размер таблицы")
@@ -189,8 +177,7 @@ def analyse_pop(ht_to_arr_dict: {}, prefix):
                 worst_times[table_size] = total_time
         all_times_for_table_size[table_size] /= times_number_for_table_size[table_size]
 
-    ax = plt.figure().add_subplot()
-    ax.set(ylim=(10 ** (-6), 10 ** (-5)))
+    plt.figure()
     plt.title("График зависимости лучшего времени для удаления элемента\n"
               " от размера таблицы с учётом resize")
     plt.xlabel("Размер таблицы")
@@ -199,8 +186,7 @@ def analyse_pop(ht_to_arr_dict: {}, prefix):
     plt.plot(best_times.keys(), best_times.values(), '--o')
     plt.savefig(f"{prefix}/pop/best_times.png", bbox_inches="tight")
 
-    ax = plt.figure().add_subplot()
-    ax.set(ylim=(10 ** (-6), 10 ** (-5)))
+    plt.figure()
     plt.title("График зависимости среднего времени для удаления элемента\n"
               " от размера таблицы с учётом resize")
     plt.xlabel("Размер таблицы")
@@ -208,8 +194,7 @@ def analyse_pop(ht_to_arr_dict: {}, prefix):
     plt.plot(all_times_for_table_size.keys(), all_times_for_table_size.values(), '--o')
     plt.savefig(f"{prefix}/pop/mean_times.png", bbox_inches="tight")
 
-    ax = plt.figure().add_subplot()
-    ax.set(ylim=(10 ** (-6), 10 ** (-4)))
+    plt.figure()
     plt.title("График зависимости худшего времени для удаления элемента\n"
               " от размера таблицы с учётом resize")
     plt.xlabel("Размер таблицы")
