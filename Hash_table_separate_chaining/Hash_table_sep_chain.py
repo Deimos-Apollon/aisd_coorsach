@@ -15,7 +15,7 @@ class HashTableSepChain:
         self.__hash_function__ = HashFunctionTrivial(self.__size__)
 
         self.__MAX_OCCUPANCY_RATE__ = 0.7
-        self.__MAX_SIZE__ = 200000
+        self.__MAX_SIZE__ = 20000000
         self.__RESIZE_MULTIPLIER__ = 2
         self.COLLISIONS_DETECTED = 0
 
